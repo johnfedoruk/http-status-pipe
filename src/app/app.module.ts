@@ -1,18 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
-import { StatusPipe } from './modules/pipes/status.pipe';
+import { HttpStatusModule } from './modules/http-status/http-status.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    StatusPipe
+    AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpStatusModule
   ],
   providers: [],
   bootstrap: [AppComponent]
