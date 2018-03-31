@@ -10,3 +10,11 @@
     width: 100%;
     max-width: 960px;
 }
+tr {
+    transition: 250ms ease all;
+}
+tr:not(:first-child):hover {
+    cursor: pointer;
+    background: darkslategray;
+    color: white;
+}

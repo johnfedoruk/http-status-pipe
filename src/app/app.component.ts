@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     public readonly codes: number[] = [
-
         100,
         101,
         102,
@@ -71,5 +70,12 @@ export class AppComponent {
         510,
         511,
         599
-    ]
+    ];
+
+    public onSelectStatusCode(status: number): void {
+        window.open(
+            `https://httpstatuses.com/${status}`,
+            '_blank'
+        );
+    }
 }

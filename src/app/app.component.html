@@ -7,7 +7,7 @@
             <th>Status Type</th>
             <th>Status Text</th>
         </tr>
-        <tr *ngFor="let code of codes">
+        <tr *ngFor="let code of codes" (click)="onSelectStatusCode(code)">
             <td>{{code}}</td>
             <td>{{code | status:"type"}}</td>
             <td>{{code | status}}</td>
