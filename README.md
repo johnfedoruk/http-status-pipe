@@ -1,27 +1,77 @@
 # HttpStatusPipe
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+[![Build Status](https://travis-ci.org/johnfedoruk/http-status-pipe.svg?branch=master)](https://travis-ci.org/johnfedoruk/http-status-pipe)
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**[Angular 5](https://angular.io)**
 
-## Code scaffolding
+_This package will not work with earlier versions of Angular!_
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+This project contains an [Angular 5](https://angular.io) pipe that can be used for rendering an arbitrary status code's status text or status type. The pipe, HttpStatusPipe, is exported from the HttpStatusModule.
 
-## Running unit tests
+## [Demo](https://johnfedoruk.github.io/http-status-pipe/index.html)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## NPM
 
-## Running end-to-end tests
+```bash
+npm install --save http-status-pipe
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Usage
 
-## Further help
+```TypeScript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpStatusModule } from 'http-status-pipe';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+import { AppComponent } from './app.component';
+
+
+@NgModule({
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        HttpStatusModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+> ./src/app/app/module.ts
+
+```TypeScript
+import { Component } from '@angular/core';
+
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+    public statusCode: number = 200;
+    constructor() {}
+}
+```
+
+> src/app/app.component.ts
+
+```html
+<h1 id="status-code">
+    Error {{ statusCode }}
+    <small>
+        {{ statusCode | status }}
+    </small>
+</h1>
+<p>{{ statusCode | status:"type" }}</p>
+```
+
+> src/app/app.component.html
+
