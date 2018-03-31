@@ -13,9 +13,18 @@
 tr {
     transition: 250ms ease all;
 }
+tr:not(:first-child):nth-child(odd) {
+    background-color: rgba(0,0,0,0.05);
+}
+tr:not(:first-child)>td:first-child {
+    color: hotpink;
+}
+tr:not(:first-child):hover>td:first-child {
+    color: white;
+}
 tr:not(:first-child):hover {
     cursor: pointer;
-    background: darkslategray;
+    background: hotpink;
     color: white;
 }
 .fa-npm, .fa-github {
