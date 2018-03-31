@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { StatusPipe } from './modules/pipes/status.pipe';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StatusPipe
   ],
   imports: [
     BrowserModule
