@@ -73,8 +73,20 @@ export class AppComponent {
     ];
 
     public onSelectStatusCode(status: number): void {
+        this.onOpenLink(`https://httpstatuses.com/${status}`);
+    }
+
+    public onOpenGitHub(): void {
+        this.onOpenLink(`https://github.com/johnfedoruk/http-status-pipe`);
+    }
+
+    public onOpenNpm(): void {
+        this.onOpenLink(`https://www.npmjs.com/package/http-status-pipe`);
+    }
+
+    protected onOpenLink(link: string): void {
         window.open(
-            `https://httpstatuses.com/${status}`,
+            link,
             '_blank'
         );
     }

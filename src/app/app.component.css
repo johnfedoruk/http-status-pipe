@@ -18,3 +18,18 @@ tr:not(:first-child):hover {
     background: darkslategray;
     color: white;
 }
+.fa-npm, .fa-github {
+    font-size: 60px;
+    margin: 20px;
+    transition: 250ms ease opacity;
+}
+.fa-npm:hover, .fa-github:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+.fa-npm {
+    color: #cb3838;
+}
+.fa-github {
+    padding: 10px;
+}
