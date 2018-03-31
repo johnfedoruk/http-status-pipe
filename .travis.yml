@@ -1,0 +1,35 @@
+#.travis.yml
+
+language: node_js
+node_js:
+  - "8.9"
+
+branches:
+  only:
+    - master
+    - develop
+
+before_script:
+  - npm install -g @angular/cli
+  - npm install
+
+script:
+  - ng lint
+  - ng test --browser PhantomJS --single-run=true --watch=false
+  - npm run packagr
+
+before_deploy:
+  - cd dist
+
+deploy:
+  provider: npm
+  email: johnny@johnfedoruk.ca
+  api_key: $NPM_TOKEN
+  skip_cleanup: true  
+  on:
+    branch: master
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change
