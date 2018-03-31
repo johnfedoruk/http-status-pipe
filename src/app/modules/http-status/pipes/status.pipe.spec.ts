@@ -3,69 +3,69 @@ import { StatusPipe } from './status.pipe';
 let pipe: StatusPipe;
 
 const statsMap = {
-    "100": "Continue",
-    "101": "Switching Protocols",
-    "102": "Processing",
-    "200": "OK",
-    "201": "Created",
-    "202": "Accepted",
-    "203": "Non-authoritative Information",
-    "204": "No Content",
-    "205": "Reset Content",
-    "206": "Partial Content",
-    "207": "Multi-Status",
-    "208": "Already Reported",
-    "226": "IM Used",
-    "300": "Multiple Choices",
-    "301": "Moved Permanently",
-    "302": "Found",
-    "303": "See Other",
-    "304": "Not Modified",
-    "305": "Use Proxy",
-    "307": "Temporary Redirect",
-    "308": "Permanent Redirect",
-    "400": "Bad Request",
-    "401": "Unauthorized",
-    "402": "Payment Required",
-    "403": "Forbidden",
-    "404": "Not Found",
-    "405": "Method Not Allowed",
-    "406": "Not Acceptable",
-    "407": "Proxy Authentication Required",
-    "408": "Request Timeout",
-    "409": "Conflict",
-    "410": "Gone",
-    "411": "Length Required",
-    "412": "Precondition Failed",
-    "413": "Payload Too Large",
-    "414": "Request-URI Too Long",
-    "415": "Unsupported Media Type",
-    "416": "Requested Range Not Satisfiable",
-    "417": "Expectation Failed",
-    "418": "I'm a teapot",
-    "421": "Misdirected Request",
-    "422": "Unprocessable Entity",
-    "423": "Locked",
-    "424": "Failed Dependency",
-    "426": "Upgrade Required",
-    "428": "Precondition Required",
-    "429": "Too Many Requests",
-    "431": "Request Header Fields Too Large",
-    "444": "Connection Closed Without Response",
-    "451": "Unavailable For Legal Reasons",
-    "499": "Client Closed Request",
-    "500": "Internal Server Error",
-    "501": "Not Implemented",
-    "502": "Bad Gateway",
-    "503": "Service Unavailable",
-    "504": "Gateway Timeout",
-    "505": "HTTP Version Not Supported",
-    "506": "Variant Also Negotiates",
-    "507": "Insufficient Storage",
-    "508": "Loop Detected",
-    "510": "Not Extended",
-    "511": "Network Authentication Required",
-    "599": "Network Connect Timeout Error"
+    "100": {text:"Continue",type:"Informational"},
+    "101": {text:"Switching Protocols",type:"Informational"},
+    "102": {text:"Processing",type:"Informational"},
+    "200": {text:"OK",type:"Success"},
+    "201": {text:"Created",type:"Success"},
+    "202": {text:"Accepted",type:"Success"},
+    "203": {text:"Non-authoritative Information",type:"Success"},
+    "204": {text:"No Content",type:"Success"},
+    "205": {text:"Reset Content",type:"Success"},
+    "206": {text:"Partial Content",type:"Success"},
+    "207": {text:"Multi-Status",type:"Success"},
+    "208": {text:"Already Reported",type:"Success"},
+    "226": {text:"IM Used",type:"Success"},
+    "300": {text:"Multiple Choices",type:"Redirection"},
+    "301": {text:"Moved Permanently",type:"Redirection"},
+    "302": {text:"Found",type:"Redirection"},
+    "303": {text:"See Other",type:"Redirection"},
+    "304": {text:"Not Modified",type:"Redirection"},
+    "305": {text:"Use Proxy",type:"Redirection"},
+    "307": {text:"Temporary Redirect",type:"Redirection"},
+    "308": {text:"Permanent Redirect",type:"Redirection"},
+    "400": {text:"Bad Request",type:"Client Error"},
+    "401": {text:"Unauthorized",type:"Client Error"},
+    "402": {text:"Payment Required",type:"Client Error"},
+    "403": {text:"Forbidden",type:"Client Error"},
+    "404": {text:"Not Found",type:"Client Error"},
+    "405": {text:"Method Not Allowed",type:"Client Error"},
+    "406": {text:"Not Acceptable",type:"Client Error"},
+    "407": {text:"Proxy Authentication Required",type:"Client Error"},
+    "408": {text:"Request Timeout",type:"Client Error"},
+    "409": {text:"Conflict",type:"Client Error"},
+    "410": {text:"Gone",type:"Client Error"},
+    "411": {text:"Length Required",type:"Client Error"},
+    "412": {text:"Precondition Failed",type:"Client Error"},
+    "413": {text:"Payload Too Large",type:"Client Error"},
+    "414": {text:"Request-URI Too Long",type:"Client Error"},
+    "415": {text:"Unsupported Media Type",type:"Client Error"},
+    "416": {text:"Requested Range Not Satisfiable",type:"Client Error"},
+    "417": {text:"Expectation Failed",type:"Client Error"},
+    "418": {text:"I'm a teapot",type:"Client Error"},
+    "421": {text:"Misdirected Request",type:"Client Error"},
+    "422": {text:"Unprocessable Entity",type:"Client Error"},
+    "423": {text:"Locked",type:"Client Error"},
+    "424": {text:"Failed Dependency",type:"Client Error"},
+    "426": {text:"Upgrade Required",type:"Client Error"},
+    "428": {text:"Precondition Required",type:"Client Error"},
+    "429": {text:"Too Many Requests",type:"Client Error"},
+    "431": {text:"Request Header Fields Too Large",type:"Client Error"},
+    "444": {text:"Connection Closed Without Response",type:"Client Error"},
+    "451": {text:"Unavailable For Legal Reasons",type:"Client Error"},
+    "499": {text:"Client Closed Request",type:"Client Error"},
+    "500": {text:"Internal Server Error",type:"Server Error"},
+    "501": {text:"Not Implemented",type:"Server Error"},
+    "502": {text:"Bad Gateway",type:"Server Error"},
+    "503": {text:"Service Unavailable",type:"Server Error"},
+    "504": {text:"Gateway Timeout",type:"Server Error"},
+    "505": {text:"HTTP Version Not Supported",type:"Server Error"},
+    "506": {text:"Variant Also Negotiates",type:"Server Error"},
+    "507": {text:"Insufficient Storage",type:"Server Error"},
+    "508": {text:"Loop Detected",type:"Server Error"},
+    "510": {text:"Not Extended",type:"Server Error"},
+    "511": {text:"Network Authentication Required",type:"Server Error"},
+    "599": {text:"Network Connect Timeout Error",type:"Server Error"},
 };
 
 describe('StatusPipe', () => {
@@ -143,7 +143,7 @@ describe('StatusPipe', () => {
         Object.keys(statsMap).forEach((key)=>{
             it(`should return text "${statsMap[key]}" for code ${key}`,()=>{
                 const num: number = pipe["toInt"](key);
-                const expected: string = statsMap[key];
+                const expected: string = statsMap[key].text;
                 expect(pipe["getStatusCodeText"](num)).toEqual(expected);
             });
         });
@@ -159,15 +159,30 @@ describe('StatusPipe', () => {
         Object.keys(statsMap).forEach((key)=>{
             it(`should return text "${statsMap[key]}" for code ${key}`,()=>{
                 const num: number = pipe["toInt"](key);
-                const expected: string = statsMap[key];
+                const expected: string = statsMap[key].text;
                 expect(pipe["transform"](num)).toEqual(expected);
             });
         });
 
         Object.keys(statsMap).forEach((key)=>{
             it(`should return text "${statsMap[key]}" for code "${key}"`,()=>{
-                const expected: string = statsMap[key];
+                const expected: string = statsMap[key].text;
                 expect(pipe["transform"](key)).toEqual(expected);
+            });
+        });
+
+        Object.keys(statsMap).forEach((key)=>{
+            it(`should return type "${statsMap[key]}" for code ${key}`,()=>{
+                const num: number = pipe["toInt"](key);
+                const expected: string = statsMap[key].type;
+                expect(pipe["transform"](num,"type")).toEqual(expected);
+            });
+        });
+
+        Object.keys(statsMap).forEach((key)=>{
+            it(`should return type "${statsMap[key]}" for code "${key}"`,()=>{
+                const expected: string = statsMap[key].type;
+                expect(pipe["transform"](key,"type")).toEqual(expected);
             });
         });
 
