@@ -13,7 +13,7 @@
     "build-landing": "ng build --prod --aot --base-href https://johnfedoruk.github.io/http-status-pipe/",
     "deploy-landing": "node node_modules/angular-cli-ghpages/bin/angular-cli-ghpages --no-silent"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular-devkit/core": "^0.4.8",
     "@angular/animations": "^5.0.0",
